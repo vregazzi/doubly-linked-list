@@ -92,12 +92,8 @@ void IntList::push_tail(int value)
         insert_new_tail(node_to_insert);
     }
 }
-//
-///
-///
-///
-///
-/// Fix this function
+
+// how are prepend/append and push_head/push_tail different?
 void IntList::insert_between_nodes(Node *previous_node, Node *next_node, Node *node_to_insert)
 {
     node_to_insert->next = next_node;
@@ -143,7 +139,7 @@ void IntList::insert(int position, int value)
 {
     if (is_empty())
     {
-        push_head(value);
+        insert_very_first_node(new Node(value));
         return;
     }
     else if (position <= 0)
