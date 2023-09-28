@@ -116,7 +116,7 @@ void IntList::prepend(int value)
     }
     else
     {
-        insert_between_nodes(nullptr, m_head, node_to_insert);
+        push_head(value);
     }
 }
 
@@ -131,7 +131,7 @@ void IntList::append(int value)
     }
     else
     {
-        insert_between_nodes(m_tail, nullptr, node_to_insert);
+        push_tail(value);
     }
 }
 
