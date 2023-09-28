@@ -19,21 +19,25 @@ int main()
 
     cout << "I expect the list to be 9, 8, 7" << endl;
     my_int_list.print_list();
+    cout << "\n";
 
     // test prepend()
     my_int_list.prepend(6);
     cout << "I expect the list to be 6, 9, 8, 7" << endl;
     my_int_list.print_list();
+    cout << "\n";
 
     // test push_tail()
     my_int_list.push_tail(1);
     cout << "I expect the list to be 9, 8, 7, 1" << endl;
     my_int_list.print_list();
+    cout << "\n";
 
     // test append()
     my_int_list.append(2);
     cout << "I expect the list to be 9, 8, 7, 1, 2" << endl;
     my_int_list.print_list();
+    cout << "\n";
 
     // test insert()
     // test insert in empty list
@@ -41,6 +45,7 @@ int main()
     empty_list.insert(0, 1);
     cout << "I expect the list to be 1" << endl;
     empty_list.print_list();
+    cout << "\n";
 
     // create new list to test insert
     IntList new_list = IntList();
@@ -54,11 +59,13 @@ int main()
     new_list.insert(-1, 9);
     cout << "I expect the list to be 9, 5, 4, 3, 2, 1" << endl;
     new_list.print_list();
+    cout << "\n";
 
     // test insert at >= size
     new_list.insert(12, 12);
     cout << "I expect the list to be 9, 5, 4, 3, 2, 1, 12" << endl;
     new_list.print_list();
+    cout << "\n";
 
     // test insert in middle
     new_list.insert(3, 8);
