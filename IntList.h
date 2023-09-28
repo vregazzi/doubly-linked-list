@@ -5,7 +5,7 @@
 class IntList
 {
 public:
-    IntList() : m_head(nullptr), m_tail(nullptr), m_size(0) {}
+    IntList();
     int size() const;
     bool is_empty() const;
     void print_list() const;

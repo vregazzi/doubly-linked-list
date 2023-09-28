@@ -9,7 +9,7 @@ IntList::IntList()
     m_size = 0;
 }
 
-Int IntList::size() const
+int IntList::size() const
 {
     return m_size;
 }
@@ -40,7 +40,6 @@ void IntList::insert_very_first_node(Node *node_to_insert)
 
     m_size++;
 }
-node_to_insert->next->prev = node_to_insert;
 
 void IntList::insert_new_head(Node *node_to_insert)
 {
@@ -142,15 +141,15 @@ void IntList::append(int value)
 
 void IntList::insert(int position, int value)
 {
-    if (is_empty)
+    if (is_empty())
     {
-        insert_very_first_node(value);
+        push_head(value);
         return;
     }
     else if (position <= 0)
     {
         push_head(value);
-        return
+        return;
     }
     else if (position >= size())
     {
