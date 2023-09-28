@@ -93,7 +93,6 @@ void IntList::push_tail(int value)
     }
 }
 
-// how are prepend/append and push_head/push_tail different?
 void IntList::insert_between_nodes(Node *previous_node, Node *next_node, Node *node_to_insert)
 {
     node_to_insert->next = next_node;
