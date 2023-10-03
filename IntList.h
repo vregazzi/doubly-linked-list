@@ -33,4 +33,6 @@ private:
     void insert_new_tail(Node *node_to_insert);
     void insert_between_nodes(Node *previous_node, Node *next_node, Node *node_to_insert);
     int remove_only_node();
+    int remove_head();
+    int remove_tail();
 };

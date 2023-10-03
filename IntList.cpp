@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include "IntList.h"
 using namespace std;
 
@@ -167,4 +168,53 @@ void IntList::insert(int position, int value)
 
         insert_between_nodes(previous_node, next_node, node_to_insert);
     }
+}
+
+int IntList::remove_only_node()
+{
+    Node *node_to_free = m_head;
+    int value_to_return = node_to_free->value;
+
+    m_head = nullptr;
+    m_tail = nullptr;
+    m_size = 0;
+
+    delete node_to_free;
+    return value_to_return;
+}
+
+int IntList::remove_head()
+{
+    if (size() < 2)
+    {
+        throw out_of_range("remove_head should be done on list with size >= 2");
+    }
+
+    Node *node_to_free = m_head;
+    int value_to_return = node_to_free->value;
+    m_size--;
+
+    m_head = m_head->next;
+    m_head->prev = nullptr;
+
+    delete node_to_free;
+    return value_to_return;
+}
+
+int IntList::remove_tail()
+{
+    if (size() < 2)
+    {
+        throw out_of_range("remove_tail should be done on list with size >= 2");
+    }
+
+    Node *node_to_free = m_tail;
+    int value_to_return = node_to_free->value;
+    m_size--;
+
+    m_tail = m_tail->prev;
+    m_tail->next = nullptr;
+
+    delete node_to_free;
+    return value_to_return;
 }
