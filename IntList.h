@@ -16,6 +16,15 @@ public:
     void insert(int position, int value);
 
 private:
+    class Node
+    {
+    public:
+        Node(int val = 0) : value(val), next(nullptr), prev(nullptr) {}
+        int value;
+        Node *next;
+        Node *prev;
+    };
+
     int m_size;
     Node *m_head;
     Node *m_tail;
@@ -23,4 +32,5 @@ private:
     void insert_new_head(Node *node_to_insert);
     void insert_new_tail(Node *node_to_insert);
     void insert_between_nodes(Node *previous_node, Node *next_node, Node *node_to_insert);
+    int remove_only_node();
 };
