@@ -14,6 +14,10 @@ public:
     void prepend(int value);
     void append(int value);
     void insert(int position, int value);
+    int pop_head();
+    int pop_tail();
+    int get(int position);
+    int remove(int position);
 
 private:
     class Node
@@ -35,4 +39,5 @@ private:
     int remove_only_node();
     int remove_head();
     int remove_tail();
+    int remove_node(Node *node_to_remove);
 };

@@ -218,3 +218,80 @@ int IntList::remove_tail()
     delete node_to_free;
     return value_to_return;
 }
+
+int IntList::pop_head()
+{
+    if (size() <= 0)
+    {
+        throw out_of_range("pop_head called on empty list");
+    }
+    else if (size() == 1)
+    {
+        return remove_only_node();
+    }
+    else
+    {
+        return remove_head();
+    }
+}
+
+int IntList::pop_tail()
+{
+    if (size() <= 0)
+    {
+        throw out_of_range("pop_tail called on empty list");
+    }
+    else if (size() == 1)
+    {
+        return remove_only_node();
+    }
+    else
+    {
+        return remove_tail();
+    }
+}
+
+int IntList::get(int position)
+{
+    if (position < 0 || position > size() - 1)
+    {
+        throw out_of_range("get called with out of range position");
+    }
+    else
+    {
+        int current_position = 0;
+        Node *current_node = m_head;
+
+        while (current_position < position)
+        {
+            current_position++;
+            current_node = current_node->next;
+        }
+
+        return current_node->value;
+    }
+}
+
+int IntList::remove(int position)
+{
+    if (position < 0 || position >= size())
+    {
+        throw out_of_range("out of range");
+    }
+    else if (size() == 1)
+    {
+        return remove_only_node();
+    }
+    // add more
+}
+
+int IntList::remove_node(Node *node_to_remove)
+{
+    // if position < 0, throw exception
+    // if position >= size of list, throw exception
+    // if position is 0, pop the front element
+    // if position is size-1, pop the back element
+    // otherwise, you know the list has at least 3
+    // elements. Find the node to remove and use your
+    // utility function
+}
