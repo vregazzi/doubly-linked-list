@@ -120,4 +120,18 @@ int main()
     cout << "I expect the list to be 7, 6, 5, 3, 2" << endl;
     cout << "The value removed is: " << my_int_list.remove(3) << endl;
     my_int_list.print_list();
+    cout << "\n";
+
+    cout << "I will be removing the value at index 0" << endl;
+    cout << "I expect the list to be 6, 5, 3, 2" << endl;
+    cout << "The value removed is: " << my_int_list.remove(0) << endl;
+    my_int_list.print_list();
+    cout << "\n";
+
+    cout << "I will be removing the value at index 3" << endl;
+    cout << "I expect the list to be 6, 5, 2" << endl;
+    cout << "The value removed is: " << my_int_list.remove(2) << endl;
+    my_int_list.print_list();
+
+    return 0;
 }
