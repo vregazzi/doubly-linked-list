@@ -274,24 +274,48 @@ int IntList::get(int position)
 
 int IntList::remove(int position)
 {
-    if (position < 0 || position >= size())
+    if (position < 0)
     {
         throw out_of_range("out of range");
+    }
+    else if (position >= size())
+    {
+        throw out_of_range("out of range");
+    }
+    else if (position == 0)
+    {
+        return pop_head();
+    }
+    else if (position == size() - 1)
+    {
+        return pop_tail();
     }
     else if (size() == 1)
     {
         return remove_only_node();
     }
-    // add more
+    else
+    {
+        Node *node_to_remove = m_head;
+        for (int i = 0; i < position; i++)
+        {
+            node_to_remove = node_to_remove->next;
+        }
+        return remove_node(node_to_remove);
+    }
 }
 
 int IntList::remove_node(Node *node_to_remove)
 {
-    // if position < 0, throw exception
-    // if position >= size of list, throw exception
-    // if position is 0, pop the front element
-    // if position is size-1, pop the back element
-    // otherwise, you know the list has at least 3
-    // elements. Find the node to remove and use your
-    // utility function
+    int value_to_return = node_to_remove->value;
+    Node *previous_node = node_to_remove->prev;
+    Node *next_node = node_to_remove->next;
+
+    previous_node->next = next_node;
+    next_node->prev = previous_node;
+
+    delete node_to_remove;
+    m_size--;
+
+    return value_to_return;
 }
