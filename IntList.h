@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Node.h"
-
 class IntList
 {
 public:
