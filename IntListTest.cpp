@@ -129,7 +129,7 @@ int main()
     cout << "\n";
 
     cout << "I will be removing the value at the last index" << endl;
-    cout << "I expect the list to be 6, 5, 2" << endl;
+    cout << "I expect the list to be 6, 5, 3" << endl;
     cout << "The value removed is: " << my_int_list.remove(my_int_list.size() - 1) << endl;
     my_int_list.print_list();
 
