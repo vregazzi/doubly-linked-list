@@ -149,4 +149,4 @@ int main()
     testIntFunctions();
     testCharFunctions();
     return 0;
-}
+};
