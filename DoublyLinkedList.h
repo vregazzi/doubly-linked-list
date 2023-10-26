@@ -134,6 +134,19 @@ public:
         m_size = 0;
     }
 
+    ~DoublyLinkedList()
+    {
+        Node *current_node = m_head;
+        Node *next_node;
+
+        while (current_node != nullptr)
+        {
+            next_node = current_node->next;
+            delete current_node;
+            current_node = next_node;
+        }
+    }
+
     int size() const
     {
         return m_size;
