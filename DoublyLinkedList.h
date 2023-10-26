@@ -126,6 +126,20 @@ private:
         return value_to_return;
     }
 
+    Node *find_node(int position)
+    {
+        int current_position = 0;
+        Node *current_node = m_head;
+
+        while (current_position < position)
+        {
+            current_node = current_node->next;
+            current_position++;
+        }
+
+        return current_node;
+    }
+
 public:
     DoublyLinkedList()
     {
@@ -136,14 +150,12 @@ public:
 
     ~DoublyLinkedList()
     {
-        Node *current_node = m_head;
-        Node *next_node;
-
-        while (current_node != nullptr)
+        Node *list_head = new Node(0);
+        while (list_head->next != 0)
         {
-            next_node = current_node->next;
-            delete current_node;
-            current_node = next_node;
+            Node *nextNode = list_head->next;
+            list_head->next = nextNode->next;
+            delete nextNode;
         }
     }
 
@@ -239,14 +251,8 @@ public:
             Node *node_to_insert = new Node(value);
             node_to_insert->value = value;
 
-            Node *previous_node = m_head;
-            Node *next_node = m_head->next;
-
-            for (int i = 0; i < position - 1; i++)
-            {
-                previous_node = next_node;
-                next_node = next_node->next;
-            }
+            Node *previous_node = find_node(position - 1);
+            Node *next_node = find_node(position) + 1;
 
             insert_between_nodes(previous_node, next_node, node_to_insert);
         }
@@ -292,14 +298,7 @@ public:
         }
         else
         {
-            int current_position = 0;
-            Node *current_node = m_head;
-
-            while (current_position < position)
-            {
-                current_position++;
-                current_node = current_node->next;
-            }
+            Node *current_node = find_node(position);
 
             return current_node->value;
         }
@@ -329,11 +328,7 @@ public:
         }
         else
         {
-            Node *node_to_remove = m_head;
-            for (int i = 0; i < position; i++)
-            {
-                node_to_remove = node_to_remove->next;
-            }
+            Node *node_to_remove = find_node(position);
             return remove_node(node_to_remove);
         }
     }
@@ -346,12 +341,7 @@ public:
         }
         else
         {
-            Node *current_node = m_head;
-
-            for (int i = 0; i < position; i++)
-            {
-                current_node = current_node->next;
-            }
+            Node *current_node = find_node(position);
             int value_to_return = current_node->value;
             current_node->value = value;
 
