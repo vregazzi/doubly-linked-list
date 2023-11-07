@@ -17,6 +17,9 @@ private:
     int m_size;
     Node *m_head;
     Node *m_tail;
+    unsigned int calls;
+    unsigned int links_followed;
+    unsigned long nano_seconds_running;
 
     void insert_very_first_node(Node *node_to_insert)
     {
@@ -128,6 +131,8 @@ private:
 
     Node *find_node(int position)
     {
+        auto start = std::chrono::high_resolution_clock::now();
+        calls++;
         int current_position = 0;
         Node *current_node = m_head;
 
@@ -135,7 +140,12 @@ private:
         {
             current_node = current_node->next;
             current_position++;
+            links_followed++;
         }
+
+        auto stop = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+        nano_seconds_running += duration.count();
 
         return current_node;
     }
@@ -146,10 +156,14 @@ public:
         m_head = nullptr;
         m_tail = nullptr;
         m_size = 0;
+        calls = 0;
+        links_followed = 0;
+        nano_seconds_running = 0;
     }
 
     ~DoublyLinkedList()
     {
+        report_stats();
         Node *list_head = new Node(0);
         while (list_head->next != 0)
         {
@@ -157,6 +171,7 @@ public:
             list_head->next = nextNode->next;
             delete nextNode;
         }
+        // delete list_head;
     }
 
     int size() const
@@ -347,5 +362,17 @@ public:
 
             return value_to_return;
         }
+    }
+
+    void report_stats()
+    {
+        std::cout << "--------------------" << std::endl;
+        std::cout << "Stats" << std::endl;
+        std::cout << "Number of calls to find_node: " << calls << std::endl;
+        std::cout << "Number of link follows: " << links_followed << std::endl;
+        std::cout << "Average number of link follows for a call to find_node: " << links_followed / calls << std::endl;
+        std::cout << "Average time for a call to find_node: " << nano_seconds_running / calls << " nanoseconds" << std::endl;
+        std::cout << "End Stats" << std::endl;
+        std::cout << "--------------------" << std::endl;
     }
 };
