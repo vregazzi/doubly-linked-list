@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cassert>
+#include <array>
 #include "DoublyLinkedList.h"
 using namespace std;
 
