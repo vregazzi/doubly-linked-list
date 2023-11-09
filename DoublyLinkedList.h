@@ -268,7 +268,7 @@ public:
             node_to_insert->value = value;
 
             Node *previous_node = find_node(position - 1);
-            Node *next_node = find_node(position) + 1;
+            Node *next_node = find_node(position);
 
             insert_between_nodes(previous_node, next_node, node_to_insert);
         }
