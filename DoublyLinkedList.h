@@ -132,6 +132,18 @@ private:
 
     Node *find_node(int position)
     {
+        if (position < size() / 2)
+        {
+            return find_node_from_head(position);
+        }
+        else
+        {
+            return find_node_from_tail(position);
+        }
+    }
+
+    Node *find_node_from_head(int position)
+    {
         auto start = std::chrono::high_resolution_clock::now();
         calls++;
         int current_position = 0;
@@ -141,6 +153,27 @@ private:
         {
             current_node = current_node->next;
             current_position++;
+            links_followed++;
+        }
+
+        auto stop = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+        nano_seconds_running += duration.count();
+
+        return current_node;
+    }
+
+    Node *find_node_from_tail(int position)
+    {
+        auto start = std::chrono::high_resolution_clock::now();
+        calls++;
+        int current_position = size() - 1;
+        Node *current_node = m_tail;
+
+        while (current_position > position)
+        {
+            current_node = current_node->prev;
+            current_position--;
             links_followed++;
         }
 
